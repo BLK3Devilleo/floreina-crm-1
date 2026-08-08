@@ -1,0 +1,5 @@
+active_claims:
+  - file: "index.html"
+    agent: "Diseñador 🎨 & Arquitecto 📐"
+    granted_at: "2026-08-08T06:20:00Z"
+    status: "CLOSED"
