@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FLOREINA CRM — Plataforma B2B para gestión de prospectos y venta de rosas ecuatorianas premium en Savannah, GA.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
   <title>🌸 FLOREINA CRM — Savannah GA B2B Prospects</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -631,7 +633,7 @@
   </div>
   <div class="controls">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Buscar empresa, ciudad, producto..." aria-label="Buscar prospecto">
+      <input type="text" id="searchInput" placeholder="Buscar empresa, ciudad, producto..." aria-label="Buscar prospecto" maxlength="100" autocomplete="off">
     </div>
     <div class="filter-group">
       <button class="filter-btn active" data-filter="all">🌐 Todos</button>
@@ -652,7 +654,7 @@
       <div class="contact-info">
         <p><strong>Gerente de Distribución Quito-Ecuador:</strong> Manuel Suárez · <a href="tel:+593996052999">+593 99 605 2999</a> · <a href="mailto:mjsuarezn@gmail.com">mjsuarezn@gmail.com</a></p>
         <p><strong>Gerente de Operaciones:</strong> Patricio Suárez · <a href="tel:+593987502433">+593 98 750 2433</a> · <a href="mailto:cuqui7474@gmail.com">cuqui7474@gmail.com</a></p>
-        <p><strong>Web:</strong> <a href="https://www.floreina.com" target="_blank" rel="noopener">www.floreina.com</a> · <strong>IG:</strong> @floreina · <strong>Email:</strong> info@floreina.com</p>
+        <p><strong>Web:</strong> <a href="https://www.floreina.com" target="_blank" rel="noopener noreferrer">www.floreina.com</a> · <strong>IG:</strong> @floreina · <strong>Email:</strong> info@floreina.com</p>
       </div>
     </div>
   </section>
@@ -672,7 +674,44 @@
 </div>
 
 <script>
-const DATA = [
+// --- STRICT SECURITY & SANITIZATION HELPERS ---
+
+/**
+ * Escapes HTML entities to prevent XSS attacks (Reflected & Stored XSS)
+ */
+function sanitizeHTML(str) {
+  if (typeof str !== 'string') return '';
+  return str.replace(/[&<>'"]/g, tag => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  }[tag] || tag));
+}
+
+/**
+ * Validates and sanitizes external URLs to prevent javascript: or data: URI execution
+ */
+function safeURL(url) {
+  if (!url || typeof url !== 'string') return '#';
+  const clean = url.trim();
+  if (/^(https?:\/\/|mailto:|tel:)/i.test(clean)) {
+    return sanitizeHTML(clean);
+  }
+  return '#';
+}
+
+/**
+ * Sanitizes phone numbers leaving only digits and leading plus sign
+ */
+function safePhone(phone) {
+  if (!phone || typeof phone !== 'string') return '';
+  return phone.replace(/[^0-9+]/g, '');
+}
+
+// --- DATASET ---
+const DATA = Object.freeze([
   {name:"Ramelle's Florist",cat:"florist",phone:"(912) 234-2261",email:"ramellesflorist@gmail.com",address:"2007 Abercorn St, Savannah GA 31401",web:"https://www.ramellesflorist.net/",social:"Facebook · Instagram",products:"Fresh flowers, tropicals, plants, European/dish gardens, contemporary & traditional arrangements, balloons, party & event planning",why:"Floristería con 82 años en el mercado. Amplio inventario. Sirve a toda el área metropolitana. Ideal para supply de rosas ecuatorianas premium por su variedad y experiencia.",hours:"Mon-Fri 9AM-2PM, Sat 9AM-12PM",priority:"high",status:"new"},
   {name:"U Got Flowers (Pink House)",cat:"florist",phone:"(912) 961-0727",email:"pinkhouseflorist@comcast.net",address:"115 E Waldburg St, Savannah GA 31401",web:"https://www.ugotflowers.com/",social:"Facebook · Yelp",products:"Fresh flowers, arrangements, same-day delivery, sympathy flowers, wedding flowers",why:"Local florist desde 1975. 24/7, entrega same-day. Sirve toda el área metro. Alto volumen de pedidos = alta demanda de rosas premium.",hours:"Mon-Sat 8AM-6PM, Sun 12PM-6PM",priority:"high",status:"new"},
   {name:"Garden on the Square",cat:"florist",phone:"(912) 233-7227",email:"gardenonthesquare99@gmail.com",address:"39 Abercorn St, Savannah GA 31401",web:"https://www.gardenonthesquare.com/",social:"Facebook · Instagram",products:"Custom floral design, eclectic gifts, local artists, seasonal items, sympathy designs",why:"Mother-daughter team, 26 años. En el Historic District de Savannah. Diseños personalizados y únicos — las rosas ecuatorianas encajarían perfecto en su oferta premium.",hours:"Mon-Sat 9AM-4PM",priority:"high",status:"new"},
@@ -725,23 +764,20 @@ const DATA = [
   {name:"The Flower Garden Shop",cat:"event",phone:"(470) 664-2779",email:"",address:"Serving Atlanta, Savannah & SE Georgia",web:"",social:"Instagram",products:"Wedding & event floral design, romantic scenes, custom arrangements",why:"Lead designer: Madison Barnes. Premier wedding florist. Sirve Atlanta + Savannah + SE Georgia. Cobertura amplia.",hours:"By appointment",priority:"high",status:"new"},
   {name:"Everlasting Memories",cat:"event",phone:"(912) 484-1449",email:"",address:"510 E Waldburg St B, Savannah GA 31401",web:"",social:"",products:"Full wedding planning, floral design, concierge, officiant, vendor recommendations",why:"Full-service + floral design in-house. Contacto: Sarah Wright. Cliente directo para rosas.",hours:"By appointment",priority:"high",status:"new"},
   {name:"Gray Harper",cat:"event",phone:"(912) 228-2920",email:"",address:"Savannah GA",web:"",social:"Facebook · Instagram",products:"Wedding planning, floral design",why:"Top 10 wedding florist Savannah. Contacto directo: Gray Harper.",hours:"By appointment",priority:"high",status:"new"}
-];
+]);
 
 let currentFilter = 'all';
 let searchTerm = '';
 
-function escapeHTML(str) {
-  if (!str) return '';
-  return str.replace(/[&<>'"]/g, 
-    tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-  );
-}
-
 function renderGrid() {
   const grid = document.getElementById('grid');
+  const cleanSearch = sanitizeHTML(searchTerm.trim().toLowerCase());
+
   let filtered = DATA.filter(d => {
     const matchFilter = currentFilter === 'all' || d.cat === currentFilter || (currentFilter === 'priority' && d.priority === 'high');
-    const matchSearch = !searchTerm || (d.name + d.address + d.products + d.why + d.email).toLowerCase().includes(searchTerm.toLowerCase());
+    const matchSearch = !cleanSearch || (
+      d.name + d.address + d.products + d.why + d.email
+    ).toLowerCase().includes(cleanSearch);
     return matchFilter && matchSearch;
   });
 
@@ -764,31 +800,47 @@ function renderGrid() {
     return;
   }
 
-  grid.innerHTML = filtered.map((d) => `
-    <div class="card" onclick="openModal(${DATA.indexOf(d)})" role="button" tabindex="0">
-      <div class="card-header">
-        <div class="card-icon ${escapeHTML(d.cat)}">${d.cat === 'florist' ? '🌷' : d.cat === 'funeral' ? '⚰️' : '🎉'}</div>
-        <div class="card-priority ${escapeHTML(d.priority)}">${d.priority === 'high' ? '🔥 Alta' : d.priority === 'medium' ? '⚡ Media' : '🌱 Baja'}</div>
+  grid.innerHTML = filtered.map((d) => {
+    const idx = DATA.indexOf(d);
+    const catClass = sanitizeHTML(d.cat);
+    const priorityClass = sanitizeHTML(d.priority);
+    const name = sanitizeHTML(d.name);
+    const phone = sanitizeHTML(d.phone);
+    const phoneRaw = safePhone(d.phone);
+    const email = sanitizeHTML(d.email);
+    const address = sanitizeHTML(d.address.split(',')[0]);
+    const webUrl = safeURL(d.web);
+    const products = sanitizeHTML(d.products);
+    const why = sanitizeHTML(d.why);
+    const hours = sanitizeHTML(d.hours);
+    const status = sanitizeHTML(d.status);
+
+    return `
+      <div class="card" onclick="openModal(${idx})" role="button" tabindex="0">
+        <div class="card-header">
+          <div class="card-icon ${catClass}">${d.cat === 'florist' ? '🌷' : d.cat === 'funeral' ? '⚰️' : '🎉'}</div>
+          <div class="card-priority ${priorityClass}">${d.priority === 'high' ? '🔥 Alta' : d.priority === 'medium' ? '⚡ Media' : '🌱 Baja'}</div>
+        </div>
+        <div class="card-title">${name}</div>
+        <div class="card-category">
+          <span class="dot ${catClass}"></span>
+          ${d.cat === 'florist' ? 'Floristería' : d.cat === 'funeral' ? 'Funeraria' : 'Eventos / Wedding'}
+        </div>
+        <div class="card-info">
+          <div class="card-info-item"><span class="icon">📞</span><a href="tel:${phoneRaw}">${phone}</a></div>
+          <div class="card-info-item"><span class="icon">✉️</span>${email ? `<a href="mailto:${safeURL(email)}">Email</a>` : '—'}</div>
+          <div class="card-info-item"><span class="icon">📍</span>${address}</div>
+          <div class="card-info-item"><span class="icon">🌐</span>${d.web ? `<a href="${webUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Web</a>` : '—'}</div>
+        </div>
+        <div class="card-products"><strong>Productos / Servicios</strong>${products}</div>
+        <div class="card-why"><strong>¿Por qué contactar?</strong>${why}</div>
+        <div class="card-footer">
+          <div class="card-hours">🕐 ${hours}</div>
+          <div class="card-status">${status === 'new' ? '🆕 Nuevo' : status === 'contacted' ? '📞 Contactado' : status === 'interested' ? '✅ Interesado' : '📋 Propuesta'}</div>
+        </div>
       </div>
-      <div class="card-title">${escapeHTML(d.name)}</div>
-      <div class="card-category">
-        <span class="dot ${escapeHTML(d.cat)}"></span>
-        ${d.cat === 'florist' ? 'Floristería' : d.cat === 'funeral' ? 'Funeraria' : 'Eventos / Wedding'}
-      </div>
-      <div class="card-info">
-        <div class="card-info-item"><span class="icon">📞</span><a href="tel:${d.phone.replace(/[^0-9+]/g,'')}">${escapeHTML(d.phone)}</a></div>
-        <div class="card-info-item"><span class="icon">✉️</span>${d.email ? `<a href="mailto:${escapeHTML(d.email)}">Email</a>` : '—'}</div>
-        <div class="card-info-item"><span class="icon">📍</span>${escapeHTML(d.address.split(',')[0])}</div>
-        <div class="card-info-item"><span class="icon">🌐</span>${d.web ? `<a href="${escapeHTML(d.web)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Web</a>` : '—'}</div>
-      </div>
-      <div class="card-products"><strong>Productos / Servicios</strong>${escapeHTML(d.products)}</div>
-      <div class="card-why"><strong>¿Por qué contactar?</strong>${escapeHTML(d.why)}</div>
-      <div class="card-footer">
-        <div class="card-hours">🕐 ${escapeHTML(d.hours)}</div>
-        <div class="card-status">${d.status === 'new' ? '🆕 Nuevo' : d.status === 'contacted' ? '📞 Contactado' : d.status === 'interested' ? '✅ Interesado' : '📋 Propuesta'}</div>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 document.getElementById('searchInput').addEventListener('input', e => {
@@ -806,10 +858,25 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 function openModal(idx) {
+  if (idx < 0 || idx >= DATA.length) return;
   const d = DATA[idx];
+  
+  const name = sanitizeHTML(d.name);
+  const catClass = sanitizeHTML(d.cat);
+  const priorityClass = sanitizeHTML(d.priority);
+  const phone = sanitizeHTML(d.phone);
+  const phoneRaw = safePhone(d.phone);
+  const email = sanitizeHTML(d.email);
+  const address = sanitizeHTML(d.address);
+  const webUrl = safeURL(d.web);
+  const social = sanitizeHTML(d.social);
+  const hours = sanitizeHTML(d.hours);
+  const products = sanitizeHTML(d.products);
+  const why = sanitizeHTML(d.why);
+
   document.getElementById('modalTitle').textContent = d.name;
   document.getElementById('modalCategory').innerHTML = `
-    <span class="dot ${escapeHTML(d.cat)}"></span>
+    <span class="dot ${catClass}"></span>
     ${d.cat === 'florist' ? '🌷 Floristería' : d.cat === 'funeral' ? '⚰️ Funeraria' : '🎉 Eventos / Wedding'} · Prioridad ${d.priority === 'high' ? 'Alta' : d.priority === 'medium' ? 'Media' : 'Baja'}
   `;
   
@@ -819,37 +886,37 @@ function openModal(idx) {
       <div class="modal-grid">
         <div class="modal-field">
           <div class="modal-field-label">Teléfono</div>
-          <div class="modal-field-value"><a href="tel:${d.phone.replace(/[^0-9+]/g,'')}">${escapeHTML(d.phone)}</a></div>
+          <div class="modal-field-value"><a href="tel:${phoneRaw}">${phone}</a></div>
         </div>
         <div class="modal-field">
           <div class="modal-field-label">Email</div>
-          <div class="modal-field-value">${d.email ? `<a href="mailto:${escapeHTML(d.email)}">${escapeHTML(d.email)}</a>` : 'No disponible'}</div>
+          <div class="modal-field-value">${email ? `<a href="mailto:${safeURL(email)}">${email}</a>` : 'No disponible'}</div>
         </div>
         <div class="modal-field full">
           <div class="modal-field-label">Dirección</div>
-          <div class="modal-field-value">${escapeHTML(d.address)}</div>
+          <div class="modal-field-value">${address}</div>
         </div>
         <div class="modal-field">
           <div class="modal-field-label">Website</div>
-          <div class="modal-field-value">${d.web ? `<a href="${escapeHTML(d.web)}" target="_blank" rel="noopener">${escapeHTML(d.web)}</a>` : 'No disponible'}</div>
+          <div class="modal-field-value">${d.web ? `<a href="${webUrl}" target="_blank" rel="noopener noreferrer">${webUrl}</a>` : 'No disponible'}</div>
         </div>
         <div class="modal-field">
           <div class="modal-field-label">Redes Sociales</div>
-          <div class="modal-field-value">${escapeHTML(d.social) || 'No disponible'}</div>
+          <div class="modal-field-value">${social || 'No disponible'}</div>
         </div>
         <div class="modal-field">
           <div class="modal-field-label">Horarios</div>
-          <div class="modal-field-value">${escapeHTML(d.hours)}</div>
+          <div class="modal-field-value">${hours}</div>
         </div>
       </div>
     </div>
     <div class="modal-section">
       <div class="modal-section-title">Productos y Servicios</div>
-      <div style="padding:20px;background:rgba(0,0,0,0.2);border-radius:12px;border:1px solid var(--border);font-size:14px;color:var(--text-muted);line-height:1.6">${escapeHTML(d.products)}</div>
+      <div style="padding:20px;background:rgba(0,0,0,0.2);border-radius:12px;border:1px solid var(--border);font-size:14px;color:var(--text-muted);line-height:1.6">${products}</div>
     </div>
     <div class="modal-why">
       <div class="modal-why-title">💡 ¿Por qué contactar a esta empresa?</div>
-      <div class="modal-why-text">${escapeHTML(d.why)}</div>
+      <div class="modal-why-text">${why}</div>
     </div>
     <div class="modal-email">
       <div class="modal-email-title">📧 Email de contacto sugerido</div>
@@ -879,7 +946,7 @@ document.addEventListener('keydown', e => {
 function exportCSV() {
   let csv = 'Empresa,Categoría,Teléfono,Email,Dirección,Web,Redes Sociales,Productos,Por qué contactar,Horarios,Prioridad,Status\n';
   DATA.forEach(d => {
-    const clean = str => `"${(str || '').replace(/"/g, '""')}"`;
+    const clean = str => `"${(str || '').replace(/"/g, '""').replace(/\r?\n|\r/g, ' ')}"`;
     csv += `${clean(d.name)},${clean(d.cat)},${clean(d.phone)},${clean(d.email)},${clean(d.address)},${clean(d.web)},${clean(d.social)},${clean(d.products)},${clean(d.why)},${clean(d.hours)},${clean(d.priority)},${clean(d.status)}\n`;
   });
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
