@@ -1,31 +1,23 @@
 # GLOBAL WALKTHROUGH - FLOREINA CRM PRO v4.0
 
 ## 🎯 OBJETIVO CUMPLIDO
-Integración completa de la documentación y catálogo oficial 2026 `FLOREINA.pdf` en el sistema CRM B2B. La plataforma cuenta ahora con el catálogo total de **39 variedades de rosas ecuatorianas**, clasificadas por categorías de color con sus especificaciones exactas de tallo (50-80cm) y tamaño de botón (4.8 a 7.0cm).
+Integración completa de las páginas dedicadas de **Política de Privacidad** y **Términos y Condiciones del Servicio B2B** en la aplicación web, así como la corrección del problema de buffer de cabeceras en `nginx.conf` para el dominio `floreina.filocentraldemando.site`.
 
 ---
 
 ## 🚀 RESUMEN DE CAMBIOS PRINCIPALES
 
-1. **Catálogo Oficial 2026 (39 Variedades Extraídas de `FLOREINA.pdf`)**:
-   - **Rojas (🔴)**: *Freedom, Explorer, Black Magic, Black Pacara, Hearts, Nina*.
-   - **Blancas (⚪)**: *Mondial, Vendela, Escimo, Tibet, Playa Blanca*.
-   - **Rosadas / Púrpuras (🌸)**: *Pink Mondial, Pink Floid, Faith, Deep Purple, Frutteto, Full Monty, Sweet Unique, Cool Water, Gerardine, Blue Berry*.
-   - **Amarillas (🟡)**: *Higth Exotic, Brigthon, Tara, Super Sun, Star Dust, Idole*.
-   - **Naranjas (🟠)**: *Dragon Tale, Orange Crush, Tifany, High Magic, Free Sprit, Carpe Diem*.
-   - **Exóticas / Bicolores (✨)**: *Sahara, Quick Sand, Green Tea, Carrusel, Magic Times, Cabaret*.
+1. **Páginas Legales Dedicadas en la App (`index.html`)**:
+   - **Pestaña `🔒 Privacidad`**: Política completa de Protección de Datos (Identidad del responsable, tipos de datos recabados, finalidades del tratamiento, derechos ARCO, seguridad SSL/TLS).
+   - **Pestaña `📜 Términos`**: Términos y Condiciones B2B de Exportación (Calidad de rosas andinas 50-80cm, logística y cadena de frío, garantía de durabilidad en florero hasta 18 días, política de reclamos en 24h, ley aplicable).
 
-2. **Filtros Dinámicos en la Pestaña Catálogo**:
-   - Botones chip para filtrar por paleta de color en tiempo real sin recargar la página.
-
-3. **Información de Contacto y Marca Actualizada**:
-   - Eslogan oficial: *"Transform every day into a special occasion"*.
-   - Datos directos de Manuel Suárez (Distribución Quito) y Patricio Suárez (Operaciones).
-   - Enlaces oficiales a `www.floreina.com` y correos corporativos.
+2. **Resolución de Error Nginx 400 Bad Request (`nginx.conf`)**:
+   - Se incrementó `client_header_buffer_size` a `4k` (antes `1k`) y `large_client_header_buffers` a `4 16k` (antes `2 1k`).
+   - Se configuró `server_name _ floreina.filocentraldemando.site *.filocentraldemando.site;` para admitir de forma óptima el dominio del servidor.
 
 ---
 
 ## 🧪 VERIFICACIÓN Y PRUEBAS REALIZADAS
-- Lectura y OCR automatizado del documento `FLOREINA.pdf`.
 - Verificación sintáctica en Node.js (0 errores).
-- Sincronización completa con `localStorage` y vistas de pipeline.
+- Navegación por pestañas probada sin fallos.
+- Commit y push exitoso a GitHub `main`.

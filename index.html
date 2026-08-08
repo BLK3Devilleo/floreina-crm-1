@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FLOREINA CRM PRO v4.0 — Catálogo Oficial 2026 y Plataforma B2B para Exportación de Rosas Ecuatorianas Premium en Savannah, GA.">
+  <meta name="description" content="FLOREINA CRM PRO v4.0 — Catálogo Oficial 2026, Política de Privacidad, Términos y Condiciones y Plataforma B2B para Exportación de Rosas Ecuatorianas Premium.">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>🌸 FLOREINA CRM PRO v4.0 — Catálogo Oficial 2026 & Prospectos B2B</title>
+  <title>🌸 FLOREINA CRM PRO v4.0 — B2B Prospects, Privacidad & Términos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -133,27 +133,29 @@
     /* MAIN NAV TABS */
     .nav-tabs {
       display: flex;
-      gap: 6px;
+      gap: 4px;
       background: rgba(255, 255, 255, 0.03);
       padding: 4px;
       border-radius: var(--radius);
       border: 1px solid var(--border);
+      overflow-x: auto;
     }
 
     .nav-tab {
-      padding: 9px 18px;
+      padding: 8px 14px;
       border: none;
       background: transparent;
       color: var(--text-muted);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-family: inherit;
+      white-space: nowrap;
     }
 
     .nav-tab:hover {
@@ -603,6 +605,75 @@
       outline: none;
     }
 
+    /* LEGAL / POLICY DOCUMENT STYLING */
+    .legal-document {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+    }
+
+    .legal-document h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .legal-document .legal-subtitle {
+      font-size: 13px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .legal-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .legal-section {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .legal-section h3 {
+      font-size: 17px;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .legal-section h3 span {
+      color: var(--primary);
+    }
+
+    .legal-section p {
+      margin-bottom: 12px;
+    }
+
+    .legal-section ul {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .legal-section li {
+      margin-bottom: 6px;
+    }
+
     /* TABLE VIEW */
     .table-container {
       background: var(--bg-card);
@@ -1018,6 +1089,7 @@
       .controls-bar { flex-direction: column; align-items: stretch; }
       .nav-tabs { overflow-x: auto; width: 100%; }
       .banner { flex-direction: column; align-items: flex-start; }
+      .legal-document { padding: 24px; }
     }
 
     ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -1055,6 +1127,12 @@
         </button>
         <button class="nav-tab" data-tab="email" role="tab">
           <span>✉️</span> Emails B2B
+        </button>
+        <button class="nav-tab" data-tab="privacy" role="tab">
+          <span>🔒</span> Privacidad
+        </button>
+        <button class="nav-tab" data-tab="terms" role="tab">
+          <span>📜</span> Términos
         </button>
       </nav>
 
@@ -1312,6 +1390,107 @@ www.floreina.com
           <button class="btn btn-secondary" onclick="copyTemplate('tplEvent')">📋 Copiar Texto</button>
         </div>
 
+      </div>
+    </section>
+
+    <!-- TAB 6: PRIVACY POLICY VIEW -->
+    <section id="viewPrivacy" class="view-section">
+      <div class="legal-document">
+        <h2>🔒 Política de Privacidad y Protección de Datos</h2>
+        <div class="legal-subtitle">FLOREINA — Exportación & Distribución de Rosas Ecuatorianas Premium</div>
+        <div class="legal-content">
+          <div class="legal-section">
+            <h3><span>1.</span> Identidad y Datos del Responsable</h3>
+            <p><strong>FLOREINA</strong> (en adelante, "la Empresa"), con operaciones de distribución comercial directa en Quito (Ecuador) y cobertura logística hacia los Estados Unidos (Savannah, GA), Canadá y Europa, es la entidad responsable del tratamiento de los datos personales facilitados por prospectos comerciales, floristerías, casas funerarias, diseñadores de eventos y distribuidores B2B.</p>
+            <p><strong>Contactos Oficiales de Protección de Datos:</strong></p>
+            <ul>
+              <li><strong>Gerencia de Distribución:</strong> Manuel Suárez · <a href="mailto:mjsuarezn@gmail.com" style="color:var(--primary)">mjsuarezn@gmail.com</a> · Tel: +593 99 605 2999</li>
+              <li><strong>Gerencia de Operaciones:</strong> Patricio Suárez · <a href="mailto:cuqui7474@gmail.com" style="color:var(--primary)">cuqui7474@gmail.com</a> · Tel: +593 98 750 2433</li>
+              <li><strong>Correo Corporativo:</strong> <a href="mailto:info@floreina.com" style="color:var(--primary)">info@floreina.com</a></li>
+              <li><strong>Sitio Web Oficial:</strong> <a href="https://www.floreina.com" target="_blank" rel="noopener" style="color:var(--primary)">www.floreina.com</a></li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>2.</span> Datos Personales Objeto de Tratamiento</h3>
+            <p>FLOREINA recopila y gestiona únicamente la información necesaria para establecer relaciones comerciales B2B y prestar servicios de suministro floral importado directo. Los datos recolectados incluyen:</p>
+            <ul>
+              <li>Nombre comercial o razón social de la empresa.</li>
+              <li>Nombres y apellidos del representante o encargado de compras.</li>
+              <li>Datos de contacto directo: número de teléfono fijo, celular/WhatsApp profesional y dirección de correo electrónico.</li>
+              <li>Dirección física de entrega de mercancía floral en el área metropolitana de Savannah GA y mercados internacionales.</li>
+              <li>Historial de compras, preferencias de variedad de rosa (Freedom, Mondial, Explorer, etc.) y especificaciones de tallo y botón.</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>3.</span> Finalidad del Tratamiento de Datos</h3>
+            <p>Los datos suministrados o registrados en el sistema CRM son utilizados exclusivamente para las siguientes finalidades legítimas:</p>
+            <ul>
+              <li>Gestión de propuestas comerciales, cotizaciones de florales y pedidos de exportación.</li>
+              <li>Coordinación de la cadena de frío, transporte aéreo y despacho logístico internacional.</li>
+              <li>Envío de muestreos de catálogo, novedades de cosecha e información de variedades de temporada.</li>
+              <li>Cumplimiento de obligaciones fiscales, contables y de control aduanero en origen (Ecuador) y destino (EE. UU. / Europa).</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>4.</span> Almacenamiento, Seguridad y Privacidad</h3>
+            <p>FLOREINA aplica rigurosas medidas de seguridad técnicas, organizativas y tecnológicas para proteger los datos frente a accesos no autorizados, alteración, pérdida o divulgación. Los datos ingresados en esta aplicación cliente se almacenan de forma cifrada y local mediante estándares web modernos.</p>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>5.</span> Derechos del Usuario (ARCO)</h3>
+            <p>Cualquier cliente o prospecto registrado tiene derecho a ejercer sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong>, así como la revocación del consentimiento para el envío de comunicaciones comerciales.</p>
+            <p>Para ejercer dichos derechos, puede comunicarse directamente enviando una solicitud formal a <a href="mailto:info@floreina.com" style="color:var(--primary)">info@floreina.com</a> o contactando por WhatsApp oficial a la Gerencia de Operaciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: TERMS AND CONDITIONS VIEW -->
+    <section id="viewTerms" class="view-section">
+      <div class="legal-document">
+        <h2>📜 Términos y Condiciones de Servicio Comercial B2B</h2>
+        <div class="legal-subtitle">FLOREINA — Suministro Mayorista de Rosas Ecuatorianas de Exportación</div>
+        <div class="legal-content">
+          <div class="legal-section">
+            <h3><span>1.</span> Aceptación de los Términos</h3>
+            <p>El uso del sistema FLOREINA CRM PRO, así como la realización de pedidos de compra de rosas ecuatorianas de exportación, implica la aceptación expresa e incondicional de los presentes Términos y Condiciones Comerciales por parte del cliente comprador.</p>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>2.</span> Estándar de Calidad y Especificaciones del Producto</h3>
+            <p>FLOREINA garantiza que todas las rosas comercializadas provienen de cultivos andinos ecuatorianos ubicados a 2,900 metros sobre el nivel del mar, bajo las siguientes especificaciones técnicas oficiales:</p>
+            <ul>
+              <li><strong>Tallos:</strong> Longitudes estándar de 50 cm, 60 cm, 70 cm y 80 cm de consistencia firme.</li>
+              <li><strong>Tamaño de Botón:</strong> Apertura y volumen de botón entre 4.8 cm y 7.0 cm según la variedad.</li>
+              <li><strong>Durabilidad en Florero:</strong> Hasta 18 días garantizados manteniendo la frescura vegetal bajo condiciones adecuadas de hidratación.</li>
+              <li><strong>Variedades Registradas (39):</strong> Incluye Freedom, Mondial, Pink Mondial, Explorer, Sahara, Quick Sand, Vendela, Ocean Song, Deep Purple, entre otras del catálogo 2026.</li>
+            </ul>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>3.</span> Logística, Cadena de Frío y Entregas</h3>
+            <p>La entrega de productos se realiza bajo los términos logísticos acordados (FOB Aeropuerto Quito, CPT / CIP destino). FLOREINA utiliza embalajes especializados de exportación y mantiene la cadena de frío ininterrumpida a 2°C - 4°C desde la poscosecha hasta la entrega.</p>
+            <p><strong>Política de Reclamaciones:</strong> En caso de cualquier discrepancia de calidad o daño por transporte, el comprador deberá notificar a FLOREINA dentro de las 24 horas siguientes a la recepción, adjuntando evidencia fotográfica y número de guía aérea.</p>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>4.</span> Precios, Cotizaciones y Condiciones de Pago</h3>
+            <p>Todos los precios se cotizan en Dólares de los Estados Unidos (USD). Las facturas emitidas son exigibles en los plazos y canales de transferencia acordados formalmente con la Gerencia Comercial.</p>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>5.</span> Propiedad Intelectual</h3>
+            <p>La marca <strong>FLOREINA</strong>, el logotipo oficial (Rosa Andina con sol y montañas), los eslóganes comerciales, así como el material fotográfico y técnico del Catálogo 2026 son propiedad exclusiva de la Empresa. Queda prohibida su reproducción no autorizada.</p>
+          </div>
+
+          <div class="legal-section">
+            <h3><span>6.</span> Ley Aplicable y Jurisdicción</h3>
+            <p>Los presentes Términos se rigen por la legislación comercial internacional aplicable al comercio de perecederos y las leyes de la República del Ecuador. Cualquier controversia será resuelta de manera amistosa o ante los tribunales competentes de Quito, Ecuador.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1758,6 +1937,8 @@ www.floreina.com
           else if (target === 'analytics') document.getElementById('viewAnalytics').classList.add('active');
           else if (target === 'roses') document.getElementById('viewRoses').classList.add('active');
           else if (target === 'email') document.getElementById('viewEmail').classList.add('active');
+          else if (target === 'privacy') document.getElementById('viewPrivacy').classList.add('active');
+          else if (target === 'terms') document.getElementById('viewTerms').classList.add('active');
         });
       });
     }
