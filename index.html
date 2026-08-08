@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FLOREINA CRM PRO v4.0 — Sistema Inteligente de Gestión B2B para Exportación de Rosas Ecuatorianas Premium en Savannah, GA.">
+  <meta name="description" content="FLOREINA CRM PRO v4.0 — Catálogo Oficial 2026 y Plataforma B2B para Exportación de Rosas Ecuatorianas Premium en Savannah, GA.">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
-  <title>🌸 FLOREINA CRM PRO v4.0 — Savannah GA B2B Prospect Management</title>
+  <title>🌸 FLOREINA CRM PRO v4.0 — Catálogo Oficial 2026 & Prospectos B2B</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -762,6 +762,30 @@
     }
 
     /* ROSES CATALOG VIEW */
+    .roses-filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .rose-chip {
+      padding: 6px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rose-chip.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
     .roses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -779,6 +803,7 @@
     .rose-card:hover {
       border-color: var(--primary);
       transform: translateY(-3px);
+      box-shadow: var(--shadow);
     }
 
     .rose-badge {
@@ -1010,7 +1035,7 @@
         <div class="logo-icon">🌸</div>
         <div class="logo-text">
           <h1>FLOREINA CRM PRO</h1>
-          <p>Rosas Ecuatorianas Premium · Savannah GA Metro</p>
+          <p>Rosas Ecuatorianas Premium · Catálogo 2026</p>
         </div>
       </a>
 
@@ -1026,7 +1051,7 @@
           <span>📈</span> Analytics
         </button>
         <button class="nav-tab" data-tab="roses" role="tab">
-          <span>🌹</span> Catálogo Rosas
+          <span>🌹</span> Catálogo Rosas (39)
         </button>
         <button class="nav-tab" data-tab="email" role="tab">
           <span>✉️</span> Emails B2B
@@ -1070,20 +1095,20 @@
     <!-- HERO BANNER -->
     <section class="banner">
       <div class="banner-text">
-        <h2>Catálogo 2026 · Rosas Ecuatorianas de Altura</h2>
+        <h2>Catálogo Oficial 2026 · Transform Every Day into a Special Occasion</h2>
         <p>
-          Rosas cultivadas a 2,900m en los Andes ecuatorianos. Tallo firme 50-70cm, botón amplio 4.8-7cm y duración en florero hasta 18 días. 
-          Distribución directa en Savannah GA, Pooler, Port Wentworth, Richmond Hill y Tybee Island.
+          Rosas ecuatorianas más exquisitas, cultivadas a 2,900m en las alturas andinas del Ecuador. Tallo firme 50-70cm, botón amplio de 4.8 a 7.0cm y durabilidad inigualable en florero.
+          Exportación y logística directa a Estados Unidos, Canadá y Europa.
         </p>
         <div class="banner-contacts">
           <div class="contact-badge">
-            <strong>Gerente Distribución Quito:</strong> Manuel Suárez · <a href="tel:+593996052999">+593 99 605 2999</a>
+            <strong>Gerente Distribución Quito:</strong> Manuel Suárez · <a href="tel:+593996052999">+593 99 605 2999</a> · <a href="mailto:mjsuarezn@gmail.com">mjsuarezn@gmail.com</a>
           </div>
           <div class="contact-badge">
-            <strong>Gerente Operaciones:</strong> Patricio Suárez · <a href="tel:+593987502433">+593 98 750 2433</a>
+            <strong>Gerente Operaciones:</strong> Patricio Suárez · <a href="tel:+593987502433">+593 98 750 2433</a> · <a href="mailto:cuqui7474@gmail.com">cuqui7474@gmail.com</a>
           </div>
           <div class="contact-badge">
-            <strong>Web:</strong> <a href="https://www.floreina.com" target="_blank" rel="noopener">www.floreina.com</a>
+            <strong>Web:</strong> <a href="https://www.floreina.com" target="_blank" rel="noopener">www.floreina.com</a> · <strong>Email:</strong> info@floreina.com
           </div>
         </div>
       </div>
@@ -1189,7 +1214,7 @@
         </div>
 
         <div class="analytics-card">
-          <h3>🔥 Nivel de Prioridad Commercial</h3>
+          <h3>🔥 Nivel de Prioridad Comercial</h3>
           <div class="chart-bar-list" id="chartPriority"></div>
         </div>
 
@@ -1209,8 +1234,17 @@
       </div>
     </section>
 
-    <!-- TAB 4: ROSES CATALOG VIEW -->
+    <!-- TAB 4: ROSES CATALOG VIEW (ALL 39 VARIETIES FROM OFFICIAL PDF) -->
     <section id="viewRoses" class="view-section">
+      <div class="roses-filter-bar">
+        <button class="rose-chip active" onclick="filterRoses('all', this)">🌐 Todas (39)</button>
+        <button class="rose-chip" onclick="filterRoses('roja', this)">🔴 Rojas</button>
+        <button class="rose-chip" onclick="filterRoses('blanca', this)">⚪ Blancas</button>
+        <button class="rose-chip" onclick="filterRoses('rosada', this)">🌸 Rosadas / Violetas</button>
+        <button class="rose-chip" onclick="filterRoses('amarilla', this)">🟡 Amarillas</button>
+        <button class="rose-chip" onclick="filterRoses('naranja', this)">🟠 Naranjas</button>
+        <button class="rose-chip" onclick="filterRoses('exotica', this)">✨ Exóticas / Bicolores</button>
+      </div>
       <div class="roses-grid" id="rosesGrid"></div>
     </section>
 
@@ -1223,17 +1257,17 @@
           <div class="email-box" id="tplFlorist">
 Estimado/a [Nombre del Encargado],
 
-Soy Manuel Suárez de FLOREINA. Nos especializamos en la distribución directa de Rosas Ecuatorianas Premium (Freedom, Mondial, Pink Mondial, Explorer) cultivadas a 2,900m de altura en los Andes.
+Soy Manuel Suárez de FLOREINA. Nos especializamos en la distribución directa de Rosas Ecuatorianas Premium (Freedom, Mondial, Pink Mondial, Explorer, Sahara, Vendela) cultivadas a 2,900m de altura en los Andes.
 
 Nuestras rosas destacan por:
 - Tallos firmes de 50 a 70 cm.
-- Botón amplio de 4.8 a 7 cm.
-- Vida en florero garantizada de hasta 18 días.
+- Botón amplio de 4.8 a 7.0 cm.
+- Durabilidad garantizada en florero de hasta 18 días.
 
 Nos encantaría enviarles un paquete de muestra sin compromiso para sus arreglos en Savannah GA. ¿Tienen disponibilidad para una breve llamada esta semana?
 
 Saludos cordiales,
-Manuel Suárez | FLOREINA
+Manuel Suárez | FLOREINA Premium Roses
 +593 99 605 2999 | mjsuarezn@gmail.com
 www.floreina.com
           </div>
@@ -1247,7 +1281,7 @@ Estimado/a Director/a de Servicios,
 
 Le escribimos de FLOREINA, proveedores directos de rosas ecuatorianas de exportación de la más alta calidad para arreglos conmemorativos e institucionales.
 
-Entendemos la importancia de la frescura y la durabilidad en cada servicio ceremonial. Ofrecemos entregas programadas de variedades blancas (Mondial, Vendela, Escimo) y rojas (Freedom) con disponibilidad constante 24/7.
+Entendemos la importancia de la frescura y la durabilidad en cada servicio ceremonial. Ofrecemos entregas programadas de variedades blancas (Mondial, Vendela, Escimo, Tibet) y rojas (Freedom, Explorer) con disponibilidad constante 24/7.
 
 Quisiéramos coordinar una propuesta de suministro preferencial para su casa funeraria.
 
@@ -1264,11 +1298,11 @@ www.floreina.com
           <div class="email-box" id="tplEvent">
 Hola [Nombre del Event Planner],
 
-En FLOREINA nos especializamos en surtir bodas de lujo en el área de Savannah & Lowcountry con rosas ecuatorianas de variedades exóticas (Sahara, Quick Sand, Ocean Song, Deep Purple, Playa Blanca).
+En FLOREINA nos especializamos en surtir bodas de lujo en el área de Savannah & Lowcountry con rosas ecuatorianas de variedades exóticas (Sahara, Quick Sand, Ocean Song, Deep Purple, High Magic, Carrusel).
 
 Nuestros botones de gran apertura garantizan el máximo impacto visual en instalaciones y centros de mesa.
 
-¿Te interesaría conocer nuestro catálogo exclusivo para la temporada 2026 con precios especiales para diseñadores de eventos?
+¿Te interesaría conocer nuestro catálogo exclusivo 2026 con precios especiales para diseñadores de eventos?
 
 Un cordial saludo,
 Manuel Suárez | FLOREINA Premium Roses
@@ -1337,15 +1371,47 @@ www.floreina.com
       {id:10, name:"Sincerely Yours Events",cat:"event",phone:"(912) 376-9424",email:"hello@sincerelyyoursevents.com",address:"127 Abercorn St, Savannah GA 31401",web:"https://www.sincerelyyoursevents.com/",social:"Instagram",products:"Full wedding planning, design & styling",why:"Premier day-of coordinators. 7+ años. Award-winning.",hours:"Mon-Sun 8AM-8PM",priority:"high",status:"interested"}
     ];
 
+    // --- COMPLETE 39 VARIETIES EXTRACTED FROM OFFICIAL FLOREINA.PDF CATALOG ---
     const ROSES_CATALOG = [
-      {name:"Freedom", type:"Roja Premium", stem:"60-80cm", button:"5.5-6.5cm", desc:"La rosa roja de mayor demanda internacional. Color rojo terciopelo vibrante y apertura perfecta."},
-      {name:"Mondial", type:"Blanca Pura", stem:"50-70cm", button:"5.0-6.0cm", desc:"Blanca con tonos verdosos cremosos. Ideal para bodas y funerarias de alto prestigio."},
-      {name:"Pink Mondial", type:"Rosa Pastel", stem:"50-70cm", button:"5.2-6.2cm", desc:"Tono rosa rubor elegante. Muy requerida para arreglos románticos y eventos nupciales."},
-      {name:"Explorer", type:"Roja Oscura Velvet", stem:"60-90cm", button:"6.0-7.0cm", desc:"Botón gigante y pétalos firmes de tono carmesí profundo."},
-      {name:"Sahara", type:"Vintage Nude", stem:"50-60cm", button:"4.8-5.5cm", desc:"Color terracota y arena. Tendencia nupcial vanguardista."},
-      {name:"Ocean Song", type:"Lavanda Exótica", stem:"50-60cm", button:"5.0-5.8cm", desc:"Tono violeta pastel único para clientes que buscan especialidad."},
-      {name:"Quick Sand", type:"Beige Champán", stem:"50-70cm", button:"5.2-6.0cm", desc:"Rosa desértica muy cotizada en eventos boho chic."},
-      {name:"Playa Blanca", type:"Blanca Nieve", stem:"50-70cm", button:"5.5-6.5cm", desc:"Apertura en forma de roseta copiosa, máxima elegancia."}
+      {name:"HIGTH EXOTIC", category:"amarilla", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Rosa exótica de color amarillo brillante intenso, ideal para destacar en arreglos alegres."},
+      {name:"SAHARA", category:"exotica", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Tono beige vintage y terracota, tendencia exclusiva para bodas estilo boho y rústico chic."},
+      {name:"FAITH", category:"rosada", stem:"50 - 60 - 70 cm", button:"5.5 - 6 cm", desc:"Matiz violeta pastel cremoso de gran elegancia y apertura delicada."},
+      {name:"PINK FLOID", category:"rosada", stem:"50 - 60 - 70 cm", button:"6 - 7 cm", desc:"Botón fucsia intenso de gran tamaño y presencia imponente en arreglos de lujo."},
+      {name:"BRIGTHON", category:"amarilla", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Amarillo canario radiante de pétalos resistentes e impecables."},
+      {name:"ESCIMO", category:"blanca", stem:"50 - 60 - 70 cm", button:"5.5 - 6 cm", desc:"Blanco marfil puro con leves matices verdosos, preferida en bodas e instituciones."},
+      {name:"BLUE BERRY", category:"rosada", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Tono frambuesa-púrpura profundo, perfecta para arreglos boutique exóticos."},
+      {name:"BLACK PACARA", category:"roja", stem:"50 - 60 - 70 cm", button:"4.8 - 5.5 cm", desc:"Rojo terciopelo tan profundo que roza el negro, codiciada para ocasiones exclusivas."},
+      {name:"TARA", category:"amarilla", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Rosa de color amarillo dorado cálido y botón equilibrado."},
+      {name:"TIBET", category:"blanca", stem:"50 - 60 - 70 cm", button:"5 - 5.8 - 6.5 cm", desc:"Blanco nieve puro de gran consistencia y excelente vida útil en florero."},
+      {name:"FRUTTETO", category:"rosada", stem:"50 - 60 - 70 cm", button:"5.5 - 6 cm", desc:"Rubor rosa suave con centro durazno, favorita en ramos nupciales."},
+      {name:"FREEDOM", category:"roja", stem:"50 - 60 - 70 cm", button:"5 - 5.8 - 6.5 cm", desc:"La rosa roja #1 del mercado mundial. Rojo intenso vibrante de máxima durabilidad."},
+      {name:"DRAGON TALE", category:"naranja", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Naranja salmón vibrante con pétalos estructurados de alto rendimiento."},
+      {name:"DEEP PURPLE", category:"rosada", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Bicolor rosa con bordes morados intensos, de alto contraste visual."},
+      {name:"ORANGE CRUSH", category:"naranja", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Naranja fuego intenso y cálido para arreglos tropicales y festivos."},
+      {name:"IDOLE", category:"amarilla", stem:"50 - 60 - 70 cm", button:"6 - 6.5 cm", desc:"Amarillo sol radiante con botón sobredimensionado y apertura simétrica."},
+      {name:"QUICK SAND", category:"exotica", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Tono champán desértico de absoluta tendencia en el mercado norteamericano."},
+      {name:"FULL MONTY", category:"rosada", stem:"50 - 60 - 70 cm", button:"6 - 6.5 cm", desc:"Fucsia carmesí exuberante de botón amplio y presencia dominante."},
+      {name:"SWEET UNIQUE", category:"rosada", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Rosa chicle dulce y romántica de delicada textura."},
+      {name:"GREEN TEA", category:"exotica", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 7 cm", desc:"Verde menta pastel distintivo para arreglos modernos de diseñador."},
+      {name:"CARRUSEL", category:"exotica", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Bicolor crema con bordes cereza que simulan una espiral festiva."},
+      {name:"SUPER SUN", category:"amarilla", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Amarillo brillante brillante de gran apertura y vitalidad."},
+      {name:"PLAYA BLANCA", category:"blanca", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Blanco puro nupcial de pétalos sedosos que abren en forma de copa victoriana."},
+      {name:"COOL WATER", category:"rosada", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Tono lavanda suave muy solicitada para arreglos románticos de alta gama."},
+      {name:"STAR DUST", category:"amarilla", stem:"50 - 60 - 70 cm", button:"5.2 - 6 - 6.5 cm", desc:"Amarillo estelar con reflejos dorados y excelente apertura."},
+      {name:"TIFANY", category:"naranja", stem:"50 - 60 - 70 cm", button:"5.5 - 6 cm", desc:"Tono durazno champán refinado y apetecido en arreglos nupciales."},
+      {name:"HIGH MAGIC", category:"naranja", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Bicolor fuego con degrada de amarillo a rojo encendido."},
+      {name:"GERARDINE", category:"rosada", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Rosa coral suave con tonos damasco elegante."},
+      {name:"FREE SPRIT", category:"naranja", stem:"50 - 60 - 70 cm", button:"5.5 - 6 cm", desc:"Naranja cobrizo voluminoso de corte rústico y exótico."},
+      {name:"NINA", category:"roja", stem:"50 - 60 - 70 cm", button:"5 - 5.5 cm", desc:"Rojo brillante clásico de tallo recto y firme."},
+      {name:"VENDELA", category:"blanca", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Crema marfil clásico, la rosa blanca más cotizada para ceremonias tradicionales."},
+      {name:"CARPE DIEM", category:"naranja", stem:"50 - 60 - 70 cm", button:"5.5 - 6 cm", desc:"Naranja melocotón aperlada de textura suave."},
+      {name:"EXPLORER", category:"roja", stem:"50 - 60 - 70 cm", button:"5.5 - 6 - 7 cm", desc:"Rojo oscuro aterciopelado con el botón gigante más cotizado en arreglos de lujo."},
+      {name:"BLACK MAGIC", category:"roja", stem:"50 - 60 - 70 cm", button:"5 - 5.8 - 6.5 cm", desc:"Rojo noche profundo de excelente vida en florero."},
+      {name:"MONDIAL", category:"blanca", stem:"50 - 60 - 70 cm", button:"6 - 6.5 cm", desc:"Blanco verdoso cremoso de apertura señorial."},
+      {name:"HEARTS", category:"roja", stem:"50 - 60 - 70 cm", button:"5 - 5.5 - 6 cm", desc:"Rojo pasión con centro en forma de corazón y pétalos rizados."},
+      {name:"PINK MONDIAL", category:"rosada", stem:"50 - 60 - 70 cm", button:"6 - 6.5 cm", desc:"Rosa pálido rosáceo de botón grande y máxima durabilidad."},
+      {name:"MAGIC TIMES", category:"exotica", stem:"50 - 60 - 70 cm", button:"6.5 - 7 cm", desc:"Bicolor jaspeada blanca con pinceladas rosadas únicas en cada rosa."},
+      {name:"CABARET", category:"exotica", stem:"50 - 60 - 70 cm", button:"5.5 - 6 - 6.5 cm", desc:"Bicolor amarillo crema con perfilado rojo carmín en sus bordes."}
     ];
 
     // --- RESTful LOCAL API CONTROLLER ---
@@ -1403,6 +1469,7 @@ www.floreina.com
     let currentFilter = 'all';
     let searchTerm = '';
     let directoryView = 'grid'; // 'grid' | 'table'
+    let currentRoseFilter = 'all';
 
     // --- APP CONTROLLER & RENDERERS ---
     function initApp() {
@@ -1453,7 +1520,6 @@ www.floreina.com
     function renderDirectoryView(data) {
       const filtered = getFilteredData(data);
       const grid = document.getElementById('directoryGrid');
-      const tableContainer = document.getElementById('directoryTableContainer');
       const tableBody = document.getElementById('directoryTableBody');
 
       if (filtered.length === 0) {
@@ -1587,7 +1653,6 @@ www.floreina.com
     function renderAnalyticsView(data) {
       const total = data.length || 1;
 
-      // Category chart
       const florists = data.filter(d => d.cat === 'florist').length;
       const funerals = data.filter(d => d.cat === 'funeral').length;
       const events = data.filter(d => d.cat === 'event').length;
@@ -1598,7 +1663,6 @@ www.floreina.com
         ${renderBar('🎉 Eventos / Bodas', events, total, 'var(--event)')}
       `;
 
-      // Priority chart
       const high = data.filter(d => d.priority === 'high').length;
       const med = data.filter(d => d.priority === 'medium').length;
       const low = data.filter(d => d.priority === 'low').length;
@@ -1609,7 +1673,6 @@ www.floreina.com
         ${renderBar('🌱 Prioridad Baja', low, total, 'var(--success)')}
       `;
 
-      // Funnel chart
       const n = data.filter(d => (d.status||'new') === 'new').length;
       const c = data.filter(d => d.status === 'contacted').length;
       const i = data.filter(d => d.status === 'interested').length;
@@ -1640,12 +1703,30 @@ www.floreina.com
       `;
     }
 
-    /* ROSES CATALOG RENDERER */
+    /* ROSES CATALOG RENDERER (ALL 39 VARIETIES) */
+    function filterRoses(cat, btn) {
+      currentRoseFilter = cat;
+      document.querySelectorAll('.rose-chip').forEach(c => c.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderRosesCatalog();
+    }
+
     function renderRosesCatalog() {
       const container = document.getElementById('rosesGrid');
-      container.innerHTML = ROSES_CATALOG.map(r => `
+      const filtered = ROSES_CATALOG.filter(r => currentRoseFilter === 'all' || r.category === currentRoseFilter);
+
+      const colorBadge = cat => {
+        if (cat === 'roja') return '<span class="rose-badge" style="background:rgba(239,68,68,0.18); color:#f87171">🔴 Rojo Imperial</span>';
+        if (cat === 'blanca') return '<span class="rose-badge" style="background:rgba(248,250,252,0.18); color:#f1f5f9">⚪ Blanco Marfil</span>';
+        if (cat === 'rosada') return '<span class="rose-badge" style="background:rgba(244,63,94,0.18); color:#fda4af">🌸 Rosa / Lavanda</span>';
+        if (cat === 'amarilla') return '<span class="rose-badge" style="background:rgba(245,158,11,0.18); color:#fcd34d">🟡 Amarillo Sol</span>';
+        if (cat === 'naranja') return '<span class="rose-badge" style="background:rgba(249,115,22,0.18); color:#fdba74">🟠 Naranja Fuego</span>';
+        return '<span class="rose-badge" style="background:rgba(192,132,252,0.18); color:#e9d5ff">✨ Exótica / Bicolor</span>';
+      };
+
+      container.innerHTML = filtered.map(r => `
         <div class="rose-card">
-          <span class="rose-badge" style="background:rgba(244,63,94,0.15); color:var(--primary)">${r.type}</span>
+          ${colorBadge(r.category)}
           <div class="rose-name">${r.name}</div>
           <div class="rose-meta">
             <strong>📏 Tallos:</strong> ${r.stem}<br>
