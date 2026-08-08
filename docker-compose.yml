@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  floreina-crm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: floreina_crm_app
+    restart: always
+    ports:
+      - "${PORT:-8080}:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  default:
+    name: floreina_network
