@@ -1,14 +1,17 @@
-# Usamos la imagen oficial de Nginx basada en Alpine por ligereza y seguridad
 FROM nginx:alpine
 
-# Copiamos nuestra configuración personalizada de Nginx
+# Limpiamos cualquier configuración predeterminada de Nginx
+RUN rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/*
+
+# Copiamos la configuración de Nginx como default_server (catch-all)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copiamos la aplicación estática al directorio web de Nginx
+# Copiamos el archivo HTML principal
 COPY index.html /usr/share/nginx/html/index.html
 
-# Exponemos el puerto 80 dentro del contenedor
+# Garantizamos permisos de lectura global para Nginx
+RUN chmod -R 755 /usr/share/nginx/html
+
 EXPOSE 80
 
-# Comando por defecto para iniciar Nginx
 CMD ["nginx", "-g", "daemon off;"]
